@@ -1,0 +1,29 @@
+GET ALL
+Leitura de todas as notas cadastradas no meu banco de dados
+
+VERGO HTTP (CRUD);
+Creat => POST
+Read => GET
+Update => PUT, PATCH
+Delete => DELETE
+
+DEFINIR UMA ROTA:
+/ALL
+
+
+src/controller
+armazena a lógica
+
+- required do schema, porque ele que conecta com a collection do banco de dados e é o esquele das minhas informações
+- dentro de uma função anônima, recebo a requisição e a resposta
+- envio as informações de todas as notas do meu banco de dados
+- exportar essa função para ser acessada nas rotas
+- vamos repetir isso em todos os verbos (get, post, update, delete)
+
+
+src/routes
+- importar o express e definir o router
+- required do arquivo de controller
+- conectar a função criada com a rota criada
+
+testar no postman (funcionando como cliente)
