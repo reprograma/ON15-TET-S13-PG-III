@@ -1,0 +1,74 @@
+GET ALL
+Leitura de todas as notas cadastradas no meu banco de dados
+
+VERBO HTTP:
+{GET}
+
+DEFINIR UMA ROTA:
+/all 
+
+src/controller
+armazena a lógica
+
+- required do schema, porque ele que conecta com a collection do banco de dados e é o esqueleto com minhas informações
+-
+
+
+
+CREATE NOTE
+Criar uma nota no banco de dados
+
+VERBO HTTP
+{POST}
+
+DEFINIR UMA ROTA
+/create
+
+editar: arquivos controller e routes
+
+testar no postman :)
+
+- ir no arquivo de rotas
+- criar uma nova rota com o verbo post
+
+
+
+
+
+
+
+
+UPDATE NOTE
+Atualizar uma nota no banco de dados
+
+VERBO HTTP:
+{PATCH}
+
+DEFINIR UMA ROTA:
+/
+
+editar: arquivos controller e routes
+
+testar no postman 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
