@@ -1,9 +1,8 @@
+const mongoose = require("mongoose")
+
 const storeSchema = new mongoose.Schema({
         id: mongoose.Schema.Types.ObjectId,
-        likes : {
-            type: Number
-        },
-        dislikes : {
+        review : {
             type: Number
         },
         store: {
@@ -33,10 +32,10 @@ const storeSchema = new mongoose.Schema({
         site: {
             type: String
         },
-        date: {
-            type: Date,
+        createdAt: {
+            type: String,
             default: new Date()
         }
-    })
+    }, { timestamps  : true })
 
     module.exports = mongoose.model('store', storeSchema)
