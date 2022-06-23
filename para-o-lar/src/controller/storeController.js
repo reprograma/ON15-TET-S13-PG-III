@@ -35,11 +35,28 @@ const createStore = async(req, res) => {
     }
 }
 
+const getById = async(req, res) => {
+    try {
+        await StoreSchema.findById(req.params.id).exec((err, stores) => {
+            if (err) {
+              return res.status(400).send({ message: `${err.message} - Id informado está fora do padrão.` });
+            } else if (stores == null) {
+              return res.status(404).send('Id não encontrado na base de dados');
+            } else {
+              return res.status(200).send(stores);
+            }
+          })
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+}
+
+
 
 module.exports = {
     findAll,
     createStore,
-    // getById,
+    getById,
     // findSome,
     // updateStore,
     // deleteStore
