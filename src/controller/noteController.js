@@ -34,7 +34,7 @@ const createNote = async (req, res) => {
     }
 }
 
-const updateNote = (req, res) => {
+const updateNote = async (req, res) => {
     try {
         const findNote = await noteSchema.findById(req.params.id)
 
@@ -44,14 +44,29 @@ const updateNote = (req, res) => {
                 "statusCode": 404
             })
         }
+
+        findNote.author = req.body.author || findNote.author
     } catch (err) {
+        console.error(err)        
+    }    
+}
+
+const deleteNote = async (req, res) => {
+    try {
+        const deletedNote = await noteSchema.findByIdAndDelete(req.params.id)
         
+        res.status(200).send({
+            "message": "nota deletada com sucesso",
+            deletedNote
+        })
+    } catch (err) {
+        console.error(err)        
     }
-    
 }
 
 module.exports = {
     getAll,
     createNote,
-    updateNote
+    updateNote,
+    deleteNote
 }
