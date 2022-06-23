@@ -10,9 +10,13 @@ const noteSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    tag: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "tag"
+    },
     createdAt: {
         type: Date,
-        default: new Date()
+        default: Date.now
     }
 });
 

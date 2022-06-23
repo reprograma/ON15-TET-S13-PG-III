@@ -10,8 +10,12 @@ const db = require('./database/mongoConfig');
 db.connect();
 app.use(express.json());
 
+app.use(express.json());
+
 const noteRoutes = require('./routes/noteRoutes');
+const tagRoutes = require('./routes/tagRoutes');
 
 app.use("/notes", noteRoutes);
+app.use("/tags", tagRoutes);
 
 module.exports = app;
