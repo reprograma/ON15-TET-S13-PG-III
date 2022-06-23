@@ -51,13 +51,27 @@ const getById = async(req, res) => {
     }
 }
 
+const findSome = async(req, res) => {
+    const { store, neighborhood } = req.query
+    let query = {}
+    if(store) query.store = new RegExp(store, 'i')
+    if(neighborhood) query.type = new RegExp(neighborhood, 'i')
+
+    try {
+        const someStore = await StoreSchema.find(query)
+        res.status(200).json(someStore)
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+}
+
 
 
 module.exports = {
     findAll,
     createStore,
     getById,
-    // findSome,
+    findSome,
     // updateStore,
     // deleteStore
 }
