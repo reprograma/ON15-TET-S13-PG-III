@@ -187,10 +187,6 @@
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gabskovisk/ON15-TET-S13-PG-III.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
