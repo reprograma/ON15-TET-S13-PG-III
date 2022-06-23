@@ -9,7 +9,7 @@ const connect = async () => {
             useUnifiedTopology: true
         })
         
-        console.log('banco conectado!')
+        console.log('Banco bem lindo e conectado!')
     } catch(error) {
         console.error(error)
     }
