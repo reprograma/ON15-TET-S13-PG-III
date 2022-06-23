@@ -85,6 +85,17 @@ const updateStore = async(req, res) => {
     }
 }
 
+const deleteStore = async(req, res) => {
+    try {
+        const deleteStore = await StoreSchema.findByIdAndDelete(req.params.id)
+        res.status(200).json({
+            "message": "Item deletato com sucesso",
+            deleteStore
+        })
+    } catch (error) {
+        res.status(500).send({message: error.message})        
+    }
+}
 
 
 module.exports = {
@@ -93,5 +104,5 @@ module.exports = {
     getById,
     findSome,
     updateStore,
-    // deleteStore
+    deleteStore
 }
