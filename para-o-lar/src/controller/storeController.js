@@ -65,6 +65,26 @@ const findSome = async(req, res) => {
     }
 }
 
+const updateStore = async(req, res) => {
+    try {
+        const findStore = await StoreSchema.findById(req.params.id)
+
+        if(!findStore) {
+            return res.status(200).send({
+                "message": "Estabelecimento não encontrado",
+                "statusCode": 404
+            })
+        }
+        const updated = await StoreSchema.findOneAndReplace({ _id: req.params.id}, req.body)
+        
+        res.status(200).json({
+            "nota atualizada": updated
+        })
+    } catch (error) {
+        res.status(500).send({message: error.message})
+    }
+}
+
 
 
 module.exports = {
@@ -72,6 +92,6 @@ module.exports = {
     createStore,
     getById,
     findSome,
-    // updateStore,
+    updateStore,
     // deleteStore
 }
