@@ -1,19 +1,18 @@
-//chamar o express para acessar o método Router
-const express = require("express")
-//criar uma variavel para router e chamar o método
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-//chamar o controller 
-const controller = require("../controller/noteController")
+const controller = require("../controller/noteController");
 
-//criar as rotas
-router.get("/all", controller.getAllNotes)
+router.get("/all", controller.getAll);
 
-router.post("/create", controller.createNote)
+router.get("/with-tags", controller.getNotesWithTags);
 
-router.put("/update/:id", controller.updateNote)
+router.get("/with-study-tags", controller.getNotesWithStudyTag);
 
-router.delete("/delete/:id", controller.deleteNote)
+router.post("/create", controller.createNote);
 
-//exportar o routes 
-module.exports = router
+router.put("/update/:id", controller.updateNote);
+
+router.delete("/delete/:id", controller.deleteNote);
+
+module.exports = router;

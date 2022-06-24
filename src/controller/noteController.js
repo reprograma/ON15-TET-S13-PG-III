@@ -1,102 +1,159 @@
-//importar o json/banco de dados
-const NoteSchema = require("../models/noteSchema")
+const NoteSchema = require("../models/noteSchema");
+const TagSchema = require("../models/tagSchema");
 
-//Encontrar todos artistas [GET]
-const getAllNotes = async(request, response) => {
+const getAll = async (req, res) => {
     try {
-        const allNotes = await NoteSchema.find()
-        response.status(200).send(allNotes)
-    } catch (error) {
-        console.error(error) 
-        response.status(500).send({ message: error.message })
-    }
+        const allNotes = await NoteSchema.find();
+        res.status(200).send(allNotes);
+    } catch(err) {
+        console.error(err)
+    };
+};
+
+const getNotesWithTags = async (req, res) => {
+    const allNotes = await NoteSchema.find(
+        { tag: { $exists: true } }
+        );
+
+    res.status(200).send(allNotes);
+};
+
+
+const getNotesWithStudyTag = async (req, res) => { 
+    const allNotesWithStudyTag = await NoteSchema.find(
+        { tag: { $eq: "62b3b9576049dc2130e87872" } }
+    );
+
+    res.status(200).send(allNotesWithStudyTag);
 }
 
-//Criar uma rota com controller para poder criar rotas [POST]
-const createNote = async(request, response) => {
+// criar nota sem tags
+
+// const createNote = async (req, res) => {
+//      try {
+//          if(!req.body.author || !req.body.title) {
+//               res.status(404).send({
+//                  "message": "Os campos obrigatórios precisam ser enviados",
+//                  "statusCode": 404
+//               })
+//          }
+
+//          const newNote = new NoteSchema({
+//              author: req.body.author,
+//              title: req.body.title,
+//              createdAt: new Date()
+//          });
+
+//          const savedNote = await newNote.save();
+
+//          if(savedNote) {
+//              res.status(201).send({
+//                  "message": "Nota criada com sucesso",
+//                  savedNote
+//              })
+//          }
+//      } catch(err) {
+//          console.error(err);
+//      }
+// };
+
+// criar nota com tag
+
+const createNote = async (req, res) => {
+     try {
+         // acessar informações do body
+         const { author, title, tag } = req.body;
+
+         // criar o esqueleto da nova nota, sem o id da tag
+         const newNote = await NoteSchema.create({ author, title });
+         console.log("NOVA NOTA CONSTRUÍDA", newNote)
+
+         if(tag) {
+             // criar o esqueleto da nova tag
+             const newTag = await new TagSchema({name: tag, notes: newNote});
+             console.log("NOVA TAG A SER SALVA", newTag)
+    
+             // salvar a nova tag
+             await newTag.save();
+    
+             // atribuir o valor de tag dentro de note ao id da nova tag
+             newNote.tag = newTag._id;
+         }
+
+         // salvar a nota
+         const savedNote = await newNote.save();
+         console.log("NOTA SALVA NO BANCO", savedNote)
+
+         // retornar a nota!
+         if(savedNote) {
+             res.status(201).send({
+                 "message": "Nota criada com sucesso",
+                 savedNote
+             })
+         }
+     } catch(e) {
+         console.error(e)
+     }
+};
+
+const updateNote = async (req, res) => {
     try {
-        if(!request.body.author || !request.body.title) {
-            response.status(404).send({
-               "message": "Os campos obrigatórios precisam ser enviados",
-               "statusCode": 404
-            })
-       }
-
-        const newNote = new NoteSchema({
-           // _id: new mongoose.Schema.Types.ObjectId,
-            author: request.body.author,
-            title: request.body.title,
-            createdAt: new Date()
-        })
-
-        const savedNote = await newNote.save();
-
-        if(savedNote) {
-            response.status(201).send({ 
-                "message": "Nota criada com sucesso", 
-                savedNote
-            })  
-        }
-    } catch (error) {
-            console.error(error)
-    }
-}
-
-//atualizar [UPDATE]
-const updateNote = async (request, response) => {
-    try {
-        //atualizar o documento a partir do id
-        //receber id da requisição
-        //encontrar o documento que possui aquele id
-        const findNote =  await NoteSchema.findById(request.params.id)
+        // atualizar o documento a partir id
+            // receber esse id da requisição
+        // encontrar o documento que possui aquele id
+        const findNote = await NoteSchema.findById(req.params.id)
+        console.log("NOTA ENCONTRADA", findNote);
 
         if(!findNote){
-            response.status(404).send({
+            res.status(404).send({
                 "message": "Nota não encontrada",
                 "statusCode": 404
             })
         }
 
-        //confiro as informações atualizadas
-        findNote.author = request.body.author || findNote.author
-        findNote.title = request.body.title || findNote.title
+        // confiro as informações atualizadas
+        findNote.author = req.body.author || findNote.author
+        findNote.title = req.body.title || findNote.title
 
-        //salvo as atualizações
+        // salvo as atualizações
         const savedNote = await findNote.save()
 
-        //envio a resposta
-        response.status(200).send({
+        // envio a resposta
+        res.status(200).send({
             "message": "Nota atualizada com sucesso",
             savedNote
         })
 
-    } catch(error){
-        console.error(error)
+    } catch(err) {
+        console.error(err)
     }
-}
+   
+};
 
-//deletar nota [DELETE]
-const deleteNote = async (request, response) => {
+const deleteNote = async (req,res) => {
     try {
-        //acessar o documento a ser deletado para
-        const findNote =  await NoteSchema.findById(request.params.id)
+        // acessar o documento a ser deletado
+        // const findNote = await NoteSchema.findById(req.params.id)
 
-        //deletar esse documento
-        await findNote.delete()
+        // deletar esse documento
+        // await findNote.delete()
 
-        response.status(200).send({
-            "message": `${findNote} deletada com sucesso`,
-            findNote   
+        const deletedNote = await NoteSchema.findByIdAndDelete(req.params.id)
+
+        res.status(200).send({
+            "message": "Nota deletada com sucesso",
+            deletedNote
         })
-
-    } catch (error){
-        console.error(error)
-    }
-}
+    } catch(err) {
+        console.error(err);
+    };
+};
 
 module.exports = {
-    getAllNotes,
+    getAll,
+    getNotesWithTags,
+    getNotesWithStudyTag,
     createNote,
     updateNote,
     deleteNote
-}
+};
