@@ -61,8 +61,6 @@ const updateNotes = async (req, res) => {
 
         const savedNote = await findNote.save()
 
-        /* const updated = await NoteSchema.findOneAndUpdate(findNote, req.body) */
-
         res.status(200).json({
             "nota atualizada": savedNote
         })
