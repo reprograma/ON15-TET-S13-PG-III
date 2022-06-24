@@ -50,12 +50,61 @@ response.status(201).send({
 
     }
 
+};
+
+
+const updateAluno = async ( request, response) => {
+try {  
+    
+    
+    const buscarAluno = await alunosSchema.findById(request.params.id)
+    if(!buscarAluno){
+response.status(404).send({
+
+"message":"aluno não encontrado",
+"statusCode":404
+})
+    }
+
+    buscarAluno.name = request.body.name || buscarAluno.name
+    
+    const salvarAluno = await buscarAluno.save
+
+    response.status(200).send({
+
+"message":"Atualizado com sucesso.",
+
+salvarAluno
+
+    })    
+} catch (error) {
+    console.error(error);
+    
 }
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 module.exports = {
     getAll,
-    creatAluno
+    creatAluno,
+    updateAluno
 
 }

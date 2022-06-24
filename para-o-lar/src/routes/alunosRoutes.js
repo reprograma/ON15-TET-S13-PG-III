@@ -5,6 +5,7 @@ const controller = require('../controller/alunosController')
 
 router.get("/todos/", controller.getAll)
 router.post("/cadastro", controller.creatAluno)
+router.put("/atualizar", controller.updateAluno)
 
 
 
