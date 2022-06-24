@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const produtoSchema = new mongoose.Shema({
+const produtoSchema = new mongoose.Schema({
     id: mongoose.Schema.Types.ObjectId,
     nome : {
         type:String,
@@ -11,8 +11,7 @@ const produtoSchema = new mongoose.Shema({
         required :true
     },
     fornecedor:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "fornecedor"
+        type: mongoose.Schema.Types.ObjectId
     },
     datadecadastro: {
         type: Date,

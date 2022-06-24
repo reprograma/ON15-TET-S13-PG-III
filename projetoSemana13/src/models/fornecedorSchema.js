@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const fornecedorSchema = new mongoose.Shema({
+const fornecedorSchema = new mongoose.Schema({
     id: mongoose.Schema.Types.ObjectId,
     nome : {
         type:String,
@@ -13,6 +13,8 @@ const fornecedorSchema = new mongoose.Shema({
     ramo:{
         type:String
     },
+    produtos:[String],
+
     datadecadastro: {
         type: Date,
         default: Date.now

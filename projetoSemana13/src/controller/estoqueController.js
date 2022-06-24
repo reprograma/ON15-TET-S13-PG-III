@@ -5,13 +5,9 @@ const produtomodel = require('../models/produtoSchema')
 const todosFornecedores = async (req, res) => {
     try {
         const fornecedores = await fornecedormodel.find()
-        const fornecedorCompleto ={
-            nome: fornecedores.nome,
-            cnpj:fornecedores.cnpj
-        }
         res.status(200).send(fornecedores)
     } catch (error) {
-        console.status(500).send(error)
+        res.status(500).send(error)
     }
 }
 
@@ -20,7 +16,7 @@ const todosProdutos = async (req, res) => {
         const produtos = await produtomodel.find()
         res.status(200).send(produtos)
     } catch (error) {
-        console.status(500).send(error)
+        res.status(500).send(error)
     }
 }
 
@@ -32,23 +28,24 @@ const cadastrarFornecedor = async (req, res) => {
                 "statusCode": 404
             })
         }
-        const novoFornecedor = new NoteSchema({
+        const novoFornecedor = new fornecedormodel({
             nome: req.body.nome,
             cnpj: req.body.cnpj,
             ramo: req.body.ramo,
+            produtos: [],
             datadecastrado: new Date()
         })
         const fornecedorSalvo = await novoFornecedor.save()
         res.status(200).send(fornecedorSalvo)
     } catch (error) {
-        console.status(500).send(error)
+        res.status(500).send(error.message)
     }
 }
 
 
 const cadastrarProduto = async (req, res) => {
-    try {
-        const buscarForncedor = fornecedormodel.findById(req.body.fornecedor)
+    try { 
+        const buscarForncedor = await fornecedormodel.findById(req.body.fornecedor)
         if (buscarForncedor.length == 0) {
             res.status(404).send({
                 "message": "Não existe nenhum forcedor com esse id,caso seja um fornecedor, por favor cadastra-lo antes de cadastrar o produto",
@@ -61,7 +58,8 @@ const cadastrarProduto = async (req, res) => {
                 "statusCode": 404
             })
         }
-        const novoProduto = new NoteSchema({
+        const atualizarFornecedor = await buscarForncedor.updateOne({ $push: { produtos: req.body.nome } })
+        const novoProduto = new produtomodel({
             nome: req.body.nome,
             valor: req.body.valor,
             fornecedor: req.body.fornecedor,
@@ -70,7 +68,7 @@ const cadastrarProduto = async (req, res) => {
         const produtoSalvo = await  novoProduto.save()
         res.status(200).send(produtoSalvo)
     } catch (error) {
-        console.status(500).send(error)
+        res.status(500).send(error.message)
     }
 }
 
