@@ -6,6 +6,7 @@ const controller = require("../controller/noteController");
 router.get("/all", controller.getAll);
 
 router.get("/with-tags", controller.getNotesWithTags);
+
 router.get("/with-study-tags", controller.getNotesWithStudyTag);
 
 router.post("/create", controller.createNote);
