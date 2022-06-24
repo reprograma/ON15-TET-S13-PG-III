@@ -821,16 +821,14 @@ Para que fosse possível a execução desse projeto, foi necessária a utilizaç
 <div align = "justify">
 
 - [Express](https://www.npmjs.com/package/express) - framework para aplicativo da web do Node.js;
-<br>
 
 - [Nodemon](https://www.npmjs.com/package/nodemon) - ajuda no desenvolvimento de sistemas com o Node. js reiniciando automaticamente o servidor;
-<br>
 
 - [Cors](https://www.npmjs.com/package/cors) - permite que um site acesse recursos de outro site mesmo estando em domínios diferentes.
 
 - [dotenv-safe](https://www.npmjs.com/package/dotenv-safes) - garante que todas as variáveis de ambiente necessárias sejam definidas depois de lidas no arquivo .env.
 
-- [mongoose](https://www.npmjs.com/package/mongoose) - gMongoose é uma ferramenta de modelagem de objetos MongoDB projetada para funcionar em um ambiente assíncrono.
+- [mongoose](https://www.npmjs.com/package/mongoose) - Mongoose é uma ferramenta de modelagem de objetos MongoDB projetada para funcionar em um ambiente assíncrono.
 
 
  <br>
