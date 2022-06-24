@@ -6,12 +6,12 @@ app.use(cors());
 
 require('dotenv-safe').config();
 
-const db = require('./database/mongoConfig');
+const db = require('./database/mongoConfig2');
 db.connect();
 
 const alunosRoutes = require('./routes/alunosRoutes');
 
 app.use(express.json());
-//app.use("/notes", noteRoutes);
+app.use("/alunos", alunosRoutes);
 
 module.exports = app;

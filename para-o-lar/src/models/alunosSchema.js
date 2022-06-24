@@ -1,48 +1,25 @@
-const mongoose  = require('mongoose')
+const mongoose = require('mongoose')
 
 const alunosSchema = new mongoose.Schema({
 
     id: mongoose.Schema.Types.ObjectId,
 
     nome: {
-type: String,
-required: true
-
-    },
-
-    atividade: {
-
-type: String,
-required: true
-    },
-
-    idade:{
-type: Number,
-required: true
-
-    },
-    
-    endereço: {
-type: String
-required: true
-
-    },
-
-    telefone: {
-type: Number
-required: true
-    },
-
-    objetivo: {
-        type: String
+        type: String,
         required: true
+
     },
 
-    detalhes: {
-        type: String
-        required: true
-    },
-    
+    atividade: String,
+    idade: Number,
+    endereço: String,
+
+    telefone: Number,
+
+    objetivo: String,
+
+    detalhes: String,
+
     createdAt: {
         type: Date,
         default: new Date()
@@ -52,4 +29,4 @@ required: true
 
 })
 
-module.exports = moongose.model('aluno', alunosSchema)
+module.exports = mongoose.model('aluno', alunosSchema)
