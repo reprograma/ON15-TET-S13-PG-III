@@ -1,5 +1,4 @@
 const RestauranteModel = require("../models/RestauranteSchema")
-const MenuModel = require("../models/MenuSchema")
 
 const createNewRestaurant = async (request, response) => {
     const { nome, estrelas, sobre, endereco, telefone, especialidade, tipoDeServico,
