@@ -840,10 +840,10 @@ Para que fosse possível a execução desse projeto, foi necessária a utilizaç
 <div align = "justify">
 
 - [package-lock.json](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/blob/BrunaCelestino/para-o-lar/reprograma-food/package-lock.json) - especifica a versão e suas dependências;
-<br>
+
 
 - [package.json](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/blob/BrunaCelestino/para-o-lar/reprograma-food/package.json) - arquivo de configuração utilizado para estipular e configurar dependências;
-<br>
+
 
 - [.gitignore](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/blob/BrunaCelestino/para-o-lar/reprograma-food/.gitignore) - arquivo que lista quais arquivos ou pastas o Git deve ignorar.
 <br>
