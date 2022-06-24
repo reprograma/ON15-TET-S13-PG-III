@@ -19,10 +19,10 @@ const registerBusiness = async (req, res) => {
              }
     
              const newBusiness = new FeiraSchema({
-                 name: req.body.name,
-                 category: req.body.category,
-                 instagram: req.body.instagram,
-                 createdAt: new Date()
+                name: req.body.name,
+                category: req.body.category,
+                instagram: req.body.instagram,
+                createdAt: new Date()
              });
     
              const savedBusiness = await newBusiness.save();
