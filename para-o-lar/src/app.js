@@ -1,19 +1,21 @@
-const express = require("express")
-require('dotenv-safe').config()
+const express = require("express");
+const app = express();
 
 const cors = require("cors")
-const db = require("./database/mongoConfig")
+app.use(cors());
 
-const app = express ()
+require('dotenv-safe').config();
 
-app.use(express.json())
+const db = require("./database/mongoConfig");
+db.connect();
 
-app.use(cors())
+app.use(express.json());
+app.use(express.json());
 
-db.connect()
+const iniciativasRoutes = require("./routes/iniciativasRoutes");
+const campanhasRoutes = require('./routes/campanhasRoutes');
 
-const iniciativasRota = require("./routes/iniciativasRoutes")
+app.use("/iniciativas", iniciativasRoutes);
+app.use("/campanhas", campanhasRoutes);
 
-app.use("/iniciativas", iniciativasRota)
-
-module.exports = app
+module.exports = app;

@@ -1,9 +1,9 @@
-const { Mongoose } = require("mongoose");
-const iniciativaSchema = require("../models/iniciativasModel")
+const IniciativaSchema = require("../models/iniciativasModel");
+const CampanhaSchema = require("../models/campanhasModel");
 
 const getAll = async (req, res) => {
     try {
-        const allIniciativas = await iniciativaSchema.find();
+        const allIniciativas = await IniciativaSchema.find();
         res.status(200).json({
         "message": "Essas são todas as iniciativas cadastradas:",
         allIniciativas
@@ -11,117 +11,149 @@ const getAll = async (req, res) => {
     } catch (err) {
         console.error(err)
      }
+};
+
+const getIniciativasWithCampanhas = async (req, res) => {
+    const allIniciativas = await IniciativaSchema.find(
+        { tag: { $exists: true } }
+    );
+
+    res.status.send(200).send(allIniciativas)
+};
+
+const findById = async (req, res) => {
+    try {
+        const iniciativaById = await IniciativaSchema.findById(req.params.id)
+
+        if (!iniciativaById) {
+            throw new Error ("Id não encontrado.")
+        }
+        return res.status(200).json({
+            "message": "Inciativa encontrada com sucesso",
+            iniciativaById
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+        
+    }
 }
 
-// const findById = (req, res) => {
-//     try {
-//         const getId = req.params.id
-//         const findId = iniciativasModel.find(iniciativa => iniciativa.id == getId)
-//         if (!findId) {
-//             throw new Error ("Id não encontrado.")
-//         }
-//         return res.status(200).json({
-//             "message": "Inciativa encontrada com sucesso",
-//             findId
-//         })
-//     } catch (error) {
-//         res.status(500).json({
-//             message: error.message
-//         })
-        
-//     }
-// }
 
-// const findByName = (req, res) => {
-//    console.log(findByName)
-//     try {
-//         const getName = req.query.nome
-//         const findName = iniciativasModel.filter(iniciativa => iniciativa.nome.toLocaleLowerCase().includes(getName))
+const findByName = async (req, res) => {
+    try {
+        const name = req.query.name
+        const iniciativaByName = await IniciativaSchema.find({name: {$regex : name, $options: 'i'}})
             
-//         if (!findName) {
-//             throw new Error ("Nome não encontrado.")
-//         }
+        if (!iniciativaByName) {
+            throw new Error ("Nome não encontrado.")
+        }
             
 
-//         res.status(200).json({
-//             "message": "Iniciativa encontrada",
-//             findName
-//         })
+        res.status(200).json({
+            "message": "Iniciativa encontrada",
+            iniciativaByName
+        })
 
-//     } catch (error) {
-//         res.status(500).json({
-//             message: error.message
-//         })
-//     }
-// }
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}
 
 
-// const findByTemas = (req, res) => {
-//     try {
-//         const getTemas = req.query.temas.toLocaleLowerCase()
-//         const findTemas = iniciativasModel.filter(iniciativa => iniciativa.temas
-//             .toString()
-//             .toLocaleLowerCase()
-//             .includes(getTemas))
+const findByThemes = async (req, res) => {
+    try {
+        const themes = req.query.themes
+        const findTemas = await IniciativaSchema.find({themes: {$regex: themes, $options: 'i'}})
             
         
-//         if (findTemas.length == 0) {
-//             throw new Error ("Tema não encontrado.")
+        if (findTemas.length == 0) {
+            throw new Error ("Tema não encontrado.")
+        }
+
+        res.status(200).json({
+            "message": "Iniciativas encontradas por temas",
+            findTemas
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}
+// Criar iniciativa sem campanha
+// const createIniciativa = async (req, res) => {
+//     try {
+//         if(!req.body.name || !req.body.city) {
+//             res.status(404).send({
+//                 "message": "Os campos obrigatórios precisam ser enviados",
+//                 "statusCode": 404
+//             })
+
+//         }
+        
+//         const newIniciativa = new IniciativaSchema ({
+//             name: req.body.name,
+//             city: req.body.city,
+//             themes: req.body.themes,
+//             description: req.body.description,
+//             site:req.body.site,
+//             national: req.body.national,
+//             dateCreated: new Date()
+//         })
+
+        
+//        const savedIniciativa = await newIniciativa.save();
+
+//        if(savedIniciativa){
+//        res.status(201).send({
+//         "message": "Nota criada com sucesso",   
+//         savedIniciativa
+//         })
 //         }
 
-//         res.status(200).json({
-//             "message": "Iniciativas encontradas por temas",
-//             findTemas
-//         })
-
-//     } catch (error) {
-//         res.status(500).json({
-//             message: error.message
-//         })
-//     }
+//         } catch (err) {
+//         console.error(err)
+//         }
 // }
 
 const createIniciativa = async (req, res) => {
-    try {
-        if(!req.body.name || !req.body.city) {
-            res.status(404).send({
-                "message": "Os campos obrigatórios precisam ser enviados",
-                "statusCode": 404
-            })
+   try { 
+    const {name, city, themes, description, site, national, campains } = req.body;
 
-        }
+    const newIniciativa = await IniciativaSchema.create({name, city, themes, description, site, national});
+    
+    if(campains) {
+        const newCampanha = await CampanhaSchema({ name: campains, iniciativa: newIniciativa});
 
-        // Fazer um if para caso o nome já seja cadastrado
-        
-        const newIniciativa = new iniciativaSchema ({
-            name: req.body.name,
-            city: req.body.city,
-            themes: req.body.themes,
-            description: req.body.description,
-            site:req.body.site,
-            national: req.body.national,
-            dateCreated: new Date()
-        })
+        await newCampanha.save();
 
-        
-       const savedIniciativa = await newIniciativa.save();
+        newIniciativa.campanha = newCampanha._id;
+    }
 
-       if(savedIniciativa){
-       res.status(201).send({
-        "message": "Nota criada com sucesso",   
+    const savedIniciativa = await newIniciativa.save();
+
+    if(savedIniciativa) {
+    res.status(201).send({
+        "message": "Iniciativa criada com sucesso",
         savedIniciativa
-        })
-        }
+    })
 
-        } catch (err) {
-        console.error(err)
-        }
-}
+    }
+
+ } catch(e) {
+    console.error(e)
+ }
+};
 
 const updateIniciativa = async (req, res) =>{
     try {
        
-        const findIniciativa = await iniciativaSchema.findById(req.params.id)
+        const findIniciativa = await IniciativaSchema.findById(req.params.id)
 
         if (!findIniciativa) {
             res.status(404).send({
@@ -152,7 +184,7 @@ const updateIniciativa = async (req, res) =>{
 const deleteById = async (req, res) => {
     try {
    
-    const findIniciativa = await iniciativaSchema.findByIdAndDelete(req.params.id)
+    const findIniciativa = await IniciativaSchema.findByIdAndDelete(req.params.id)
     res.status(200).send({
         message: "Iniciativa deletada com sucesso.",
         findIniciativa
@@ -173,9 +205,10 @@ const deleteById = async (req, res) => {
 
 module.exports = {
     getAll,
-    // findById,
-    // findByName,
-    // findByTemas,
+    getIniciativasWithCampanhas,
+    findById,
+    findByName,
+    findByThemes,
     createIniciativa,
     updateIniciativa,
     deleteById

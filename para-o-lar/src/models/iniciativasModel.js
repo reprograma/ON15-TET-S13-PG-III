@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const iniciativaSchema = new mongoose.Schema({
+const IniciativaSchema = new mongoose.Schema({
     name : {
         type: String,
         required: true
@@ -10,10 +10,14 @@ const iniciativaSchema = new mongoose.Schema({
     description: [String],
     site: [String],
     national: Boolean,
+    campains: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "campanha"
+    },
     dateCreated: {
         type: Date,
         default: new Date()
-    }
-})
+    },
+});
 
-module.exports = mongoose.model('iniciativa', iniciativaSchema)
+module.exports = mongoose.model('iniciativa', IniciativaSchema)
