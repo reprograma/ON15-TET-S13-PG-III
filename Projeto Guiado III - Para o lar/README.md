@@ -36,12 +36,12 @@ Através do **GET** é possível visualizar todo o banco de dados relacionado ao
 **routes**- Onde armazenamos as rotas que possibilitam que cada rota seja acessada conforme a definição;
 **data base** - Configurações e conexão com nosso banco dados.
 
-<div align = "center"> **MÓDULOS** </div>
+**MÓDULOS** 
 
 -> Express, Cors, Nodemon, Mongoose (assíncrono), dotenv-safe.
 
-<div align = "center"> **ARQUIVOS** </div>
-
+ **ARQUIVOS** 
+ 
 -> package-lock.jason; package.json
 Os arquivos especificam as dependências e versões, alinhando as configurações destas.
 
