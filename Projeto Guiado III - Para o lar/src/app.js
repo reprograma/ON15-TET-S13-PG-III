@@ -9,9 +9,10 @@ require('dotenv-safe').config();
 const db = require('./database/mongoConfig');
 db.connect();
 
-const noteRoutes = require('./routes/noteRoutes');
+const bookRoutes = require('./routes/bookRoutes');
 
 app.use(express.json());
-app.use("/notes", noteRoutes);
+
+app.use("/book", bookRoutes);
 
 module.exports = app;
