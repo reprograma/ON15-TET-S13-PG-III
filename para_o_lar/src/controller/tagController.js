@@ -4,7 +4,7 @@ const tagSchema = require('../models/tagSchema')
 const findAlltags = async (request, response) => {
     try {
 
-     const allTags = await TagSchema.find().pretty() // find em todos os prêmios do filme
+     const allTags = await tagSchema.find() // find em todos os prêmios do filme
         
      response.status(200).json(allTags)
  
@@ -24,7 +24,7 @@ const createTag = async (request, response) => {
        }
 
 
-        const newTag = new TagSchema({
+        const newTag = new createTag({
             
             prizes: request.body.prizes,
             year: request.body.year,

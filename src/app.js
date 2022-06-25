@@ -7,7 +7,7 @@ app.use(cors());
 require('dotenv-safe').config();
 
 const db = require('./database/mongoConfig');
-db.connect();
+db.connect(); // vem do module exports do mongoConfig
 
 const noteRoutes = require('./routes/noteRoutes');
 
