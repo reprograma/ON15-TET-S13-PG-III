@@ -23,6 +23,7 @@ Ensinar sobre diversidade é um compromisso que firmei enquanto educadora. Nesse
 ## FUNCIONAMENTO DO ACERVO
 
 <div align = "justify">
+
 Através do **GET** é possível visualizar todo o banco de dados relacionado ao acervo, com as seguintes informações: *titulo, autor, descrição, ano de lançamento e editora.* Com o **POST**, cadastramos novos livros de acordo com o lançamento destes. Utilizando o **PATCH** , modificamos os livros em caso de alteração, lançamento por uma nova editora. E com o **DELETE** excluímos as obras que podem não ser direcionadas para a faixa etária.
 
 </div>
@@ -41,7 +42,7 @@ Através do **GET** é possível visualizar todo o banco de dados relacionado ao
 -> Express, Cors, Nodemon, Mongoose (assíncrono), dotenv-safe.
 
  **ARQUIVOS** 
- 
+
 -> package-lock.jason; package.json
 Os arquivos especificam as dependências e versões, alinhando as configurações destas.
 
