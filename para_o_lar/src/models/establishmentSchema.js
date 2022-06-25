@@ -6,7 +6,7 @@ const establishmentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    endereço: {
+    endereco: {
         type: String,
         required: true
     },

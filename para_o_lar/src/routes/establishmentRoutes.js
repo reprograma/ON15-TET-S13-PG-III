@@ -5,7 +5,7 @@ const controller = require('../controller/establishmentController')
 
 router.get('/all', controller.getAll);
 
-// router.post('/create', controller.createEstablishment);
+router.post('/create', controller.createEstablishment);
 
 // router.put('/update/:id', controller.updateEstablishment);
 
