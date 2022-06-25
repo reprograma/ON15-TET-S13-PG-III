@@ -4,7 +4,7 @@
 
 Para este projeto, foi escolhido um projeto que já havia sido feito anteriormente sem utilizar o banco de dados e a proposta era efetuá-lo com essa integração com o banco de dados.
 
-Simulei o projeto de acordo com todo conteúdo que já foi feito nas aulas,escolhi o projeto desenvolvido na semana 10.
+Simulei o projeto de acordo com todo conteúdo que já foi feito nas aulas,escolhi o projeto desenvolvido na semana 10,onde foi efetuado uma rede social para estabelecimentos de lojas de decoração.
 Efetuando uma API com arquitetura MVC e utilizando os métodos https GET, POST, PUT e DELETE.
 
 ### Tema do Projeto: Rede Social para Estabelecimento / Decoração Store
