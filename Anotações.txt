@@ -1,0 +1,49 @@
+#npm install quando queremos roda a informação onde já foi criado as dependências.
+npm install
+npm start
+-------------------------
+#colocar na package.json
+"dev": "nodemon server.js"
+npm run dev
+----------------------------
+#no noteschema quando algo é obrigatorio utilizar required;
+
+
+GET ALL
+leitura de todas as notas cadatradas no meu banco dados;
+
+
+VERBO HTTP:
+{GET}
+
+DEFINIR UMA ROTA:
+/all
+
+src/controller
+#no controller ficar a lógica
+armazena a lógica
+
+- required doschema, porque ele que conecta
+com a collection do banco de dados e é o esqueleto das minhas informações
+-dentro de uma função anônima, recebo a requisição e a resposta
+- envio as informações de todas as notas do meu banco de dados
+-exportar essa função para ser acessada nas rotas
+
+src/routes
+-importar o express e definir o router
+
+-required do arquivo de controller
+-conectar a função criada com a rota criada
+
+src/app
+descomentar linhas sobre rotas
+
+testar postaman \o/
+
+src/routes
+
+no post vai está assim localhost:3000/notes/all
+
+{PUT}pode sobre escrever
+
+{PATCH}
