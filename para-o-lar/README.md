@@ -7,7 +7,7 @@ Para este projeto, foi escolhido um projeto que já havia sido feito anteriormen
 Simulei o projeto de acordo com todo conteúdo que já foi feito nas aulas,escolhi o projeto desenvolvido na semana 10.
 Efetuando uma API com arquitetura MVC e utilizando os métodos https GET, POST, PUT e DELETE.
 
-### Tema do Projeto: Rede Social para Estabelecimendo: Decoração Store
+### Tema do Projeto: Rede Social para Estabelecimento / Decoração Store
 
 <img src= "https://i.pinimg.com/originals/89/6d/51/896d51e0d4ca62621a1735e28eeeee43.gif">
 
