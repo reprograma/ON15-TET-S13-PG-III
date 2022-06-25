@@ -11,7 +11,8 @@ const produtoSchema = new mongoose.Schema({
         required :true
     },
     fornecedor:{
-        type: mongoose.Schema.Types.ObjectId
+        type: mongoose.Schema.Types.ObjectId,
+        ref : 'fornecedor'
     },
     datadecadastro: {
         type: Date,

@@ -10,6 +10,6 @@ const db = require('../src/database/mongoConfig');
 db.connect();
 
 app.use(express.json());
-app.use(rotas)
+app.use("/estoque",rotas)
 
 module.exports = app;

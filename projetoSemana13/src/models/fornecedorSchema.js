@@ -13,7 +13,10 @@ const fornecedorSchema = new mongoose.Schema({
     ramo:{
         type:String
     },
-    produtos:[String],
+    produtos:{
+        type: [String],
+        ref : 'produto'
+    },
 
     datadecadastro: {
         type: Date,
