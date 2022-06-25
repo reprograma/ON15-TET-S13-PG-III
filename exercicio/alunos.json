@@ -1,0 +1,40 @@
+[{
+    "id": 1,
+"Nome": "Patricia",
+"Idade": 28,
+"Curso": "Medicina"},
+
+{"id": 2,
+    "Nome": "Pedro Henrique",
+    "Idade": 15,
+    "Curso": "Ensino médio"
+
+}, 
+{"id": 3,
+
+    "Nome": "Paula Souza",
+    "Idade": 23,
+    "Curso": "Engenharia de produção"
+
+
+},
+{
+    "id": 4,
+    "Nome": "Luana Carolina",
+    "Idade": 20,
+    "Curso": "Administração"
+
+
+},
+{"id": 5,
+    "Nome": "Rosana Santos",
+    "Idade": 31,
+    "Curso": "Economia"
+
+
+}
+
+
+
+
+]
