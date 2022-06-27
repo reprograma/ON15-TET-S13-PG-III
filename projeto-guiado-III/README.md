@@ -198,6 +198,8 @@ Exemplo de **Tag** cadastrado:
 |  `GET`   | localhost:PORT/museums/search    |        Busca museu por nome ou pelo bairro                   |
 |  `GET`   | localhost:PORT/museums/with-tags                 |             Busca museu com qualquer tag                                    |
 |  `GET`   | localhost:PORT/museums/with-free-tags                 |             Busca museu pela tag "grátis"                                    |
+|  `GET`   | localhost:PORT/museums/with-close-tags                 |             Busca museu pela tag "temporariamente fechado"                                    |
+|  `GET`   | localhost:PORT/museums/with-accessible-tags                 |             Busca museu pela tag "acessível"                                    |
 |  `GET`   | localhost:PORT/tags/all                 |             Lista de todas as tags                                    |
 
 
