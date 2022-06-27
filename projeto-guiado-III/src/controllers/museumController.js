@@ -24,6 +24,20 @@ const getMuseumsWithFreeTag = async (req, res) => {
     res.status(200).send(allMuseumsWithFreeTag)
 }
 
+const getMuseumsWithCloseTag = async (req, res) => {
+    const allMuseumsWithCloseTag = await MuseumSchema.find(
+        { tag: { $eq: "62b90ade1029dede1ea27026" } }
+    )
+    res.status(200).send(allMuseumsWithCloseTag)
+}
+
+const getMuseumsWithAccessibleTag = async (req, res) => {
+    const allMuseumsWithAccessibleTag = await MuseumSchema.find(
+        { tag: { $eq: "62b91929c107a1de5c5d0831" } }
+    )
+    res.status(200).send(allMuseumsWithAccessibleTag)
+}
+
 const findByNameAndNeighborhood = async (req, res) => {
     const { name, neighborhood } = req.query
     let query = {}
@@ -106,6 +120,8 @@ module.exports = {
     getAll,
     getMuseumWithTags,
     getMuseumsWithFreeTag,
+    getMuseumsWithCloseTag,
+    getMuseumsWithAccessibleTag,
     findByNameAndNeighborhood,
     createMuseum,
     updateMuseum,
