@@ -6,6 +6,8 @@ const controller = require("../controllers/museumController")
 router.get("/all", controller.getAll)
 router.get("/with-tags", controller.getMuseumWithTags)
 router.get("/with-free-tags", controller.getMuseumsWithFreeTag)
+router.get("/with-close-tags", controller.getMuseumsWithCloseTag)
+router.get("/with-accessible-tags", controller.getMuseumsWithAccessibleTag)
 router.get("/search", controller.findByNameAndNeighborhood)
 
 router.post("/create", controller.createMuseum)
