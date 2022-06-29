@@ -175,7 +175,7 @@ const storeSchema = new mongoose.Schema({
 <br>
 </div>
 
-####  Método DELETE
+###  Método DELETE
 
 <div align = "center">
 
