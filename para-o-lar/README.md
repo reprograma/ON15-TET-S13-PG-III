@@ -8,6 +8,14 @@
 
 <br>
 
+<br>
+<div align = "center">
+<img src='./assets/olindar.png' width = 500 alt = 'logo olindar'>
+</div>
+<br>
+
+# Olindar
+
 <div align="justify"> 
 
 ### Projeto da Semana 13 da {Reprograma}, em que utilizamos um projeto já executado anteriormente com banco de dados simulado e o refatoramos utilizando MONGODB e MONGOOSE. 
