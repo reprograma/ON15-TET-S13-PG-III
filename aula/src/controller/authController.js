@@ -6,11 +6,11 @@ const SECRET = process.env.SECRET;
 const login = (req, res) => {
     try {
         // UserSchema.findOne(filtro é o email do usuario, função anonima) essas são os parâmetros
-        noteSchema.findOne({ author: req.body.author }, (error, user) => {
+        noteSchema.findOne({ author: req.body.author }, (error, note) => {
             if(!note) {
                 return res.status(401).send({
-                    message: "Nota não encontrado",
-                    email: `${req.body.author}`
+                    message: "Autor não encontrado",
+                    author: `${req.body.author}`
                 })
             }
            

@@ -7,6 +7,7 @@ const SECRET = process.env.SECRET;
 const getAll = async (req, res) => {
     try {
         const authHeader = req.get('authorization')
+        console.log(authHeader)
         const token = authHeader.split(' ')[1];
 
         if (!token) {
@@ -79,8 +80,8 @@ const createNote = async (req, res) => {
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
     req.body.password = hashedPassword; 
     try {
-        if(!req.body.name || !req.body.email || !req.body.password) {
-            res.status(404).send({
+        if(!req.body.author || !req.body.title || !req.body.password) {
+              return res.status(404).send({
               "message": "Campos obrigatórios precisam ser preenchidos"
             })
           };
