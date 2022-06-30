@@ -1,8 +1,24 @@
 const NoteSchema = require("../models/noteSchema");
 const TagSchema = require("../models/tagSchema");
+const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
+const SECRET = process.env.SECRET;
 
 const getAll = async (req, res) => {
     try {
+        const authHeader = req.get('authorization')
+        const token = authHeader.split(' ')[1];
+
+        if (!token) {
+            return res.status(401).send("Erro no header")
+        }
+
+       jwt.verify(token, SECRET, (err) => {
+    if(err) {
+        return res.status(401).send("Não autorizado")
+    }
+});
+
         const allNotes = await NoteSchema.find();
         res.status(200).send(allNotes);
     } catch(err) {
@@ -60,12 +76,19 @@ const getNotesWithStudyTag = async (req, res) => {
 // criar nota com tag
 
 const createNote = async (req, res) => {
-     try {
+    const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+    req.body.password = hashedPassword; 
+    try {
+        if(!req.body.name || !req.body.email || !req.body.password) {
+            res.status(404).send({
+              "message": "Campos obrigatórios precisam ser preenchidos"
+            })
+          };
          // acessar informações do body
-         const { author, title, tag } = req.body;
+         const { author, title, tag, password } = req.body;
 
          // criar o esqueleto da nova nota, sem o id da tag
-         const newNote = await NoteSchema.create({ author, title });
+         const newNote = await NoteSchema.create({ author, title, password });
          console.log("NOVA NOTA CONSTRUÍDA", newNote)
 
          if(tag) {
