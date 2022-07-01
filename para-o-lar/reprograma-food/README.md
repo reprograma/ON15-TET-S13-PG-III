@@ -76,7 +76,7 @@ O servidor, criado dentro da pasta [reprograma-food]https://github.com/BrunaCele
                     📂---models
                     |
                     |   MenuSchema.js
-                    |   RestauranteSchema.json
+                    |   RestauranteSchema.js
                     |
                     |
                     📂---routes
