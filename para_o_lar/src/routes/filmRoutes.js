@@ -6,6 +6,8 @@ const router = express.Router()
 
 router.get("/all", controller.findAllfilms)
 
+router.get("/tags", controller.findAllfilmsWithTags)
+
 router.post("/film/create", controller.createFilm)
 
 router.delete("/delete/:id", controller.deleteFilm)

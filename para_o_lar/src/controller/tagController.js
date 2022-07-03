@@ -1,4 +1,3 @@
-// const filmSchema = require('../models/filmSchema')
 const tagSchema = require('../models/tagSchema')
 
 const findAlltags = async (request, response) => {
@@ -26,6 +25,7 @@ const createTag = async (request, response) => {
 
         const newTag = new createTag({
             
+            filmId: request.body.filmId,
             prizes: request.body.prizes,
             year: request.body.year,
             createdAt: new Date() 
@@ -65,72 +65,10 @@ const deleteTag = async (request, response) => {
 }
 
 
- // const unionTag = async (request, response) => {
-    
-    // using mongodB.Bson;
-    // using mongodB.Driver;
-    
-    // new BsonArray
-    // {
-
-    //     // const db = db.orders.aggregate(request.params.id) 
-        
-
-           
-    //         new BsonDocument("$lookup",
-    //         new BsonDocument
-    //             {
-    //                 { "from", "tag" },
-    //                 { "localField", "_id" },
-    //                 { "foreignField", "film_id" },
-    //                 { "as", "agragacao" }
-    //             })
-
-    // }
-
-   
-// const tagDb = require('../database/mongoConfig')
-
-// const unionTag = async (request, response) => {
-//     try {
-//       const unionTags = await tagSchema.findById(request.params.id)
-//       // filmSchema.find(_id, _id)
-//        db.film.find()([
-//         {
-//           $unwind: "$filmSchema",
-//         },
-//         {
-//           $lookup: {
-//             from: "films",
-//             localField: "_id",
-//             foreignField: "_id",
-//             as: "film_union",
-//           },
-//         },
-//         {
-//           $unwind: "filmSchema",
-//         },
-//         {
-//           $match: {
-//             "id.prizes": "_id"
-//           }
-//         },
-//       ])
-    
-//       // throw new Error(err);
-//       response.status(200).json(unionTags)
-
-
-//     } catch(err) {
-//       // throw new Error(err);
-//       console.error(err)
-//         }
-
-//     }
-
  module.exports = {
     findAlltags,
     createTag,
     deleteTag,
-    // unionTag
+    createTag
+   
 }

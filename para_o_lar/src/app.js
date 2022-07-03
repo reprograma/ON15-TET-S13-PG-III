@@ -7,7 +7,7 @@ app.use(cors());
 require('dotenv-safe').config();
 
 const db = require('./database/mongoConfig');
-// db.connect(); 
+db.connect(); 
 
 const filmRoutes = require('./routes/filmRoutes');
 const tagRoutes = require('./routes/tagRoutes');

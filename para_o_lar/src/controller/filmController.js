@@ -12,6 +12,35 @@ const findAllfilms = async (request, response) => {
     }
  }
 
+const findAllfilmsWithTags = async (request, response) => {
+    try {
+
+     const query = FilmSchema.aggregate( [
+        {
+          $lookup:
+          {
+            localField: "_id",
+            foreignField: "filmId",
+            from: "tags",
+            as: "prizes"
+          }
+       }
+     ] );
+
+     query.exec(function(err, data) {
+		if (err) {
+            response.status(500).json(err)
+		} else {
+            response.status(400).json(data)
+        }
+ 	 });
+
+ 
+    } catch (error) {
+      response.status(500).json({ message: error.message})
+    }
+}
+
 const createFilm = async (request, response) => {
       
     try {
@@ -107,9 +136,10 @@ const deleteFilm = async (request, response) => {
     
 }
 
- module.exports = {
+module.exports = {
     findAllfilms,
+    findAllfilmsWithTags,
     createFilm,
     updateFilm,
-    deleteFilm    
+    deleteFilm,
 }
