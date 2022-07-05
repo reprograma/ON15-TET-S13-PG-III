@@ -178,7 +178,7 @@ const storeSchema = new mongoose.Schema({
 
 |  Método  |                  Rota                       |                                Descrição                     |
 | :------: | :-------------------------------------:     | :-------------------------------------------------------:    |
-|   `PUT`  |  localhost:8099/livrarias/update/:id        |       Atualizar  os estabelecimentos por ID                  |
+|   `PUT`  |  localhost:8099/store/update/:id        |       Atualizar  os estabelecimentos por ID                  |
 
 <br>
 </div>
@@ -189,7 +189,7 @@ const storeSchema = new mongoose.Schema({
 
 |  Método  |                  Rota                       |                                Descrição                     |
 | :------: | :-------------------------------------:     | :-------------------------------------------------------:    |
-| `DELETE` |  localhost:8099/livrarias/delete/:id        |                      Deletar estabelecimento por ID          |
+| `DELETE` |  localhost:8099/store/delete/:id        |                      Deletar estabelecimento por ID          |
 
 <br>
 </div>
@@ -238,3 +238,8 @@ const storeSchema = new mongoose.Schema({
 - Ou forke diretamente para o seu Postman através do link:<div align = "justify"> [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/20977005-3d6a647b-c374-45a4-85b5-3bdaa4525c93?action=collection%2Ffork&collection-url=entityId%3D20977005-3d6a647b-c374-45a4-85b5-3bdaa4525c93%26entityType%3Dcollection%26workspaceId%3Dfd948d9e-a939-463f-8094-05c2599f2db5) </div>
 
 </div>
+
+<br>
+<br>
+<div align = "center">
+<a href="https://www.linkedin.com/in/eliza-pimentel/"><img alt="linkedin" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/></a> </div>
