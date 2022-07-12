@@ -14,4 +14,11 @@ const tagSchema = new mongoose.Schema({
     ]
 });
 
+
+router.get("/all", controller.getAll);
+
+router.get("/color", controller.getTagByColor);
+
+router.post("/create", controller.createTag);
+
 module.exports = mongoose.model('tag', tagSchema);
