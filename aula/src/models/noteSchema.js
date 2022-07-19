@@ -14,6 +14,10 @@ const noteSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "tag"
     },
+    password: {
+        type: String,
+
+    },
     createdAt: {
         type: Date,
         default: Date.now
